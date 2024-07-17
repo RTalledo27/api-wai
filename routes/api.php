@@ -29,7 +29,7 @@ Route::get('/v1/dashboard', [DashboardController::class, 'dashboard'])
 
 
 
-Route::apiResource('v1/empleados', EmpleadoController::class)->only(['show', 'index','store','update'])
+Route::apiResource('v1/empleados', EmpleadoController::class)->only(['show', 'index','store','update','destroy'])
 //->middleware('auth:sanctum')
 ;
 
@@ -38,13 +38,12 @@ Route::apiResource('v1/empleados', EmpleadoController::class)->only(['show', 'in
 Route::middleware('cors','auth:api')->group(function () {
     Route::apiResource('v1/clientes', ClienteController::class)->only(['show', 'index', 'store', 'update']);
 
-    Route::apiResource('v1/cotizaciones', CotizacionController::class)->only(['index', 'show', 'store']);
+    Route::apiResource('v1/cotizaciones', CotizacionController::class)->only(['index', 'show', 'store','update']);
     
-    Route::apiResource('v1/elementos', ElementoController::class)->only(['index', 'show', 'store', 'update']);
+    Route::apiResource('v1/elementos', ElementoController::class)->only(['index', 'show', 'store', 'update', 'destroy']);
     
-    Route::apiResource('v1/elementos-cotizaciones', Elemento_cotizacionController::class)->only(['index', 'store']);
+    Route::apiResource('v1/elementos-cotizaciones', Elemento_cotizacionController::class)->only(['index', 'store','destroy']);
 
-    Route::apiResource('v1/roles', RolController::class)->only(['index']);
 
     Route::apiResource('v1/proyectos', ProyectoController::class)->only(['index', 'store', 'update', 'show']);
     
@@ -78,3 +77,4 @@ Route::group([
     Route::get('me', [ LoginController::class, 'me']);
 });
 
+Route::apiResource('v1/roles', RolController::class)->only(['index','store']);

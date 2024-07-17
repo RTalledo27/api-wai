@@ -38,17 +38,11 @@ class CotizacionController
     public function show($idProyecto)
     {
         //
-        $cotizaciones = Cotizaciones::with('proyecto', 'elementos_cotizacion.elemento')
+        $cotizacion = Cotizaciones::with('proyecto', 'elementos_cotizacion.elemento')
         ->where('idProyecto', $idProyecto)
-        ->get();
+        ->firstOrFail(); // Usamos firstOrFail para obtener un solo resultado o lanzar una excepción
 
-    return CotizacionResource::collection($cotizaciones); //
-
-    if (!$cotizaciones) {
-        return response()->json(['error' => 'Cotizacion no encontrada'], 404);
-    }
-
-    return new CotizacionResource($cotizaciones);
+    return new CotizacionResource($cotizacion); 
    
 
     }
@@ -56,9 +50,17 @@ class CotizacionController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cotizaciones $cotizacion)
+    public function update(Request $request, $idProyecto)
     {
         //
+
+     
+        $cotizacion = Cotizaciones::where('idProyecto',$idProyecto)->firstOrFail();
+
+        $cotizacion->update($request->all());
+    
+    // Responder al cliente con la cotización actualizada
+    return response()->json(new CotizacionResource($cotizacion), Response::HTTP_OK);
     }
 
     /**

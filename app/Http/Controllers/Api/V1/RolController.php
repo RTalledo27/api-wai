@@ -6,7 +6,8 @@ use App\Models\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\V1\RolResource;
-use Illuminate\Routing\Controller; 
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RolController extends Controller
 {
@@ -40,6 +41,27 @@ class RolController extends Controller
     public function store(Request $request)
     {
         //
+        $rules =[
+            'nombre_rol' => 'required|string|max:255',
+        ];
+
+        // Validar el request con sus reglas
+        $validator = Validator::make($request->all(), $rules);
+
+        // Manejar los errores de validación
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        // Crear el rol
+        $rol = Roles::create($request->all());
+
+        // Devolver la respuesta exitosa
+        return response()->json(new RolResource($rol), Response::HTTP_CREATED);
+        
+
     }
 
     /**

@@ -21,6 +21,7 @@ class Elemento_cotizacionResource extends JsonResource
             'idCotizacion'=> $this->idCotizacion,
             'idElemento' => $this->idElemento,
             'elementos'=> new ElementoResource($this->elemento),
+            'cotizacion'=> new CotizacionResource($this->cotizacion),
         ];
     }
 }

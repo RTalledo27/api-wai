@@ -55,6 +55,7 @@ class CotizacionDetails extends Mailable
                 'cotizacion' => $this->cotizacion,
                 'cliente'=>$this->cliente,
                 'proyecto'=>$this->proyecto,
+                'empleado'=>$this->proyecto->empleado,
             ],
         );
     }

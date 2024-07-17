@@ -32,5 +32,6 @@ class Cotizaciones extends Model
     public function elementos_cotizacion(){
         return $this->hasMany(Elementos_cotizacion::class, 'idCotizacion');
     }
+    
 
 }

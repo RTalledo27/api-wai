@@ -55,7 +55,7 @@ class DashboardControllerTest extends TestCase
     {
        
 
-        //CREAR PROYECTO
+        //* PCREAR PROYECTO
         $estado = Estados::factory()->create(['estado' => 'Cancelado']);
         $rol = Roles::factory()->create(['nombre_rol' => 'Desarrollador']);
         $empleado = Empleados::factory()->create([
@@ -66,7 +66,7 @@ class DashboardControllerTest extends TestCase
             'usuario' => 'Roma',
         ]);
 
-         //INICIAR SESION
+         //*INICIAR SESION
        
          $this->actingAs($empleado, 'api');
 
@@ -92,7 +92,7 @@ class DashboardControllerTest extends TestCase
         $cotizacion = Cotizaciones::factory()->create([
             'idEmpleado' => $empleado->idEmpleado,
             'idCliente' => $cliente->idCliente,
-            'idProyecto' => $proyecto->idProyecto,  // Ensure idProyecto is set properly
+            'idProyecto' => $proyecto->idProyecto,  //* Ensure idProyecto is set properly
             'fecha_cotizacion' => '2024-06-17',
             'subtotal' => '200.00',
             'descuento' => '0.00',
@@ -109,10 +109,10 @@ class DashboardControllerTest extends TestCase
 
       
 
-        //
+        //* OBTENER RESPUESTA DE /api/v1/proyectos Y VERIFICAR SU ESTRUCTURA Y ESTADO DE RESPUESTA
         $response = $this->getJson('/api/v1/proyectos');
 
-        // 
+        //* ESTADO DE RESPUESTA Y ESTRUCTURA DE JSON
         $response->assertStatus(200)
                  ->assertJsonStructure([
                      'data' => [

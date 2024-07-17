@@ -25,6 +25,7 @@ class EmpleadoResource extends JsonResource
                 'correo_empleado' => $this->correo_empleado,
                 'usuario' => $this->usuario,
                 'coontraseña' => $this->contraseña,
+                'isActive'=> $this->isActive,
             
             
         ];

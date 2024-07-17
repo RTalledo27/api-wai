@@ -24,6 +24,7 @@ class Empleados extends Authenticatable implements JWTSubject
         'contraseña',
         'usuario',
         'idRol',
+        'isActive'
     ];
 
     protected $hidden = [

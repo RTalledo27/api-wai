@@ -18,10 +18,11 @@ class ClienteResource extends JsonResource
             'idCliente' => $this->idCliente,
             'type'=>'cliente',
             'attributes'=>[
-                'nombre' => $this->nombre_cliente,
-                'dni' => $this->dni_cliente,
-                'email' => $this->correo_cliente,
-                'telefono' => $this->telefono_cliente,
+                'nombre_cliente' => $this->nombre_cliente,
+                'dni_cliente' => $this->dni_cliente,
+                'correo_cliente' => $this->correo_cliente,
+                'telefono_cliente' => $this->telefono_cliente,
+                
             ]
         ];
     }

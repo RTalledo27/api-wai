@@ -15,7 +15,7 @@ class ElementoController
     public function index()
     {
         //
-        $elementos = Elementos::all();
+        $elementos = Elementos::where('isActive', 1)->get();
         return ElementoResource::collection($elementos);
 
     }
@@ -29,7 +29,8 @@ class ElementoController
         $validatedData = $request->validate([
             'nombre_elemento' => 'required',
             'descripcion' => 'required',
-            'costo' => 'required'
+            'costo' => 'required',
+            'isActive' => 'required'
         ]);
 
         $elemento = Elementos::create($validatedData);
@@ -62,8 +63,11 @@ class ElementoController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Elementos $elementos)
+    public function destroy(Elementos $elemento)
     {
-        //
+        
+        $elemento->update(['isActive' => 0]);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

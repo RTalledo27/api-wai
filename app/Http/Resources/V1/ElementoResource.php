@@ -19,6 +19,7 @@ class ElementoResource extends JsonResource
             'nombre_elemento' => $this->nombre_elemento,
             'descripcion'=>$this->descripcion,
             'costo'=>$this->costo,
+            'isActive'=>$this->isActive,
         ];
     }
 }

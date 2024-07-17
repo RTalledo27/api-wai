@@ -16,10 +16,12 @@ class Elementos extends Model
     protected $fillable =[
         'nombre_elemento',
         'descripcion',
-        'costo'
+        'costo',
+        'isActive'
     ];
 
     public function elemento_cotizacion(){
         return $this->hasMany(Elementos_cotizacion::class, 'idElemento');
     }
+    
 }

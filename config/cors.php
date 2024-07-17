@@ -19,7 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL'), "http://localhost:4200/","https://wait-gestor.netlify.app/"],
+    'allowed_origins' => [env('FRONTEND_URL'),"*"],
+
+    'Access-Control-Allow-Origin'=>['*'],
 
     'allowed_origins_patterns' => [],
 
